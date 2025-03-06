@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Переход в Telegram</title>
+    <title>Переход в Telegram123</title>
     <!-- Стили для красивого дизайна -->
     <style>
         body {
@@ -78,12 +78,13 @@
        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
 
-       ym(100210756, "init", {
+       ym(100211918, "init", {
             clickmap:true,
             trackLinks:true,
             accurateTrackBounce:true
        });
     </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/100211918" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
     <!-- /Яндекс.Метрика -->
 </head>
 <body>
@@ -118,11 +119,11 @@
 
         // Перенаправление с задержкой для отправки данных в Метрику
         setTimeout(function() {
-            ym(100210756, 'reachGoal', 'telegram_redirect'); // Отправка цели
+            ym(100211918, 'reachGoal', 'telegram_redirect'); // Отправка цели
             setTimeout(function() {
                 window.location.href = fullUrl; // Перенаправление с UTM-метками
-            }, 50000); // Дополнительная задержка
-        }, 2500); // Задержка перед отправкой цели
+            }, 500); // Дополнительная задержка
+        }, 250); // Задержка перед отправкой цели
 
         // Обновляем ссылку для ручного перехода
         const telegramLink = document.getElementById("telegram-link");

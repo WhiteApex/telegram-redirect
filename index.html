@@ -1,149 +1,132 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Переход в Telegram</title>
-  <style>
-    body {
-      font-family: 'Arial', sans-serif;
-      background: linear-gradient(135deg, #6a11cb, #2575fc);
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      color: #fff;
-      text-align: center;
-    }
-    .container {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 2rem;
-      border-radius: 15px;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-      max-width: 90%;
-    }
-    h1 { font-size: 2rem; margin-bottom: 1rem; font-weight: bold; }
-    p { font-size: 1rem; margin-bottom: 1rem; opacity: 0.9; }
-    input[type="tel"] {
-      padding: 0.5rem;
-      border-radius: 10px;
-      border: none;
-      width: 80%;
-      margin-bottom: 1rem;
-      font-size: 1rem;
-    }
-    button {
-      background: #fff;
-      color: #2575fc;
-      font-weight: bold;
-      border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 25px;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-    button:hover { background: #eee; }
-    .loader {
-      display: none;
-      border: 4px solid rgba(255, 255, 255, 0.3);
-      border-top: 4px solid #fff;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      animation: spin 1s linear infinite;
-      margin: 1rem auto 0;
-    }
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Переход в Telegram</title>
+    <!-- Стили для красивого дизайна -->
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #fff;
+            text-align: center;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            max-width: 90%;
+            animation: fadeIn 1s ease-in-out;
+        }
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+        p {
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        .loader {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid #fff;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(-20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .telegram-link {
+            display: inline-block;
+            margin-top: 1.5rem;
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            border: 2px solid #fff;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+        .telegram-link:hover {
+            background: #fff;
+            color: #2575fc;
+        }
+    </style>
+    <!-- Яндекс.Метрика -->
+    <script type="text/javascript" >
+       (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+       m[i].l=1*new Date();
+       for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+       k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+       (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
 
-  <!-- Яндекс.Метрика -->
-  <script type="text/javascript">
-    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-    m[i].l=1*new Date();
-    for (var j = 0; j < document.scripts.length; j++) {
-      if (document.scripts[j].src === r) { return; }
-    }
-    k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
-
-    ym(100210756, "init", {
-      clickmap:true,
-      trackLinks:true,
-      accurateTrackBounce:true
-    });
-  </script>
-  <!-- /Яндекс.Метрика -->
+       ym(100210756, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true
+       });
+    </script>
+    <!-- /Яндекс.Метрика -->
 </head>
 <body>
-  <div class="container">
-    <h1>Введите номер телефона</h1>
-    <p>Для перехода в Telegram-канал, пожалуйста, оставьте ваш номер:</p>
-    <form id="phone-form">
-      <input type="tel" id="phone" name="phone" placeholder="+7 (___) ___-__-__" required>
-      <br>
-      <button type="submit">Продолжить</button>
-    </form>
-    <div class="loader" id="loader"></div>
-  </div>
+    <div class="container">
+        <h1>Добро пожаловать!</h1>
+        <p>Сейчас вы будете перенаправлены в наш Telegram-канал.</p>
+        <div class="loader"></div>
+        <p>Если перенаправление не произошло, нажмите <a href="#" id="telegram-link" class="telegram-link">сюда</a>.</p>
+    </div>
+    <script>
+        // Функция для определения типа устройства
+        function getDeviceType() {
+            const userAgent = navigator.userAgent;
+            if (/mobile|android|iphone|ipad|ipod/i.test(userAgent)) {
+                return "mobile";
+            } else if (/tablet|ipad/i.test(userAgent)) {
+                return "tablet";
+            } else {
+                return "desktop";
+            }
+        }
 
-  <!-- Подключаем библиотеку IMask -->
-  <script src="https://unpkg.com/imask"></script>
+        // Добавляем UTM-метки к ссылке
+        const baseUrl = "https://t.me/shilodevelopment/745";
+        const deviceType = getDeviceType();
+        const utmSource = "qr_code";
+        const utmMedium = deviceType; // Тип устройства как utm_medium
+        const utmCampaign = "promote_tg_channel";
 
-  <script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbyov-jONH4j_SZG1UzC5jgbkaVgyAI1vRooXYu-1vRSWjO1rSDoiDrh1H2-NLvnc0oBKg/exec';
-    const form = document.getElementById('phone-form');
-    const loader = document.getElementById('loader');
-    const phoneInput = document.getElementById('phone');
+        // Формируем полную ссылку с UTM-метками
+        const fullUrl = `${baseUrl}?utm_source=${utmSource}&utm_medium=${utmMedium}&utm_campaign=${utmCampaign}`;
 
-    // Настройка маски телефона
-    const maskOptions = {
-      mask: '+{7} (000) 000-00-00'
-    };
-    const mask = IMask(phoneInput, maskOptions);
+        // Перенаправление с задержкой для отправки данных в Метрику
+        setTimeout(function() {
+            ym(100210756, 'reachGoal', 'telegram_redirect'); // Отправка цели
+            setTimeout(function() {
+                window.location.href = fullUrl; // Перенаправление с UTM-метками
+            }, 500); // Дополнительная задержка
+        }, 250); // Задержка перед отправкой цели
 
-    // Очистка телефона перед отправкой
-    function cleanPhoneNumber(phone) {
-      return phone.replace(/[^+\d]/g, '');
-    }
-
-    form.addEventListener('submit', e => {
-      e.preventDefault();
-      loader.style.display = 'block';
-
-      const rawPhone = phoneInput.value;
-      const cleanedPhone = cleanPhoneNumber(rawPhone);
-
-      if (cleanedPhone.length < 10) {
-        alert("Пожалуйста, введите корректный номер телефона.");
-        loader.style.display = 'none';
-        return;
-      }
-
-      const formData = new FormData();
-      formData.append('phone', cleanedPhone);
-
-      fetch(scriptURL, {
-        method: 'POST',
-        body: formData,
-        mode: 'no-cors'
-      })
-      .then(() => {
-        ym(100210756, 'reachGoal', 'phone_collected');
-        const device = /mobile|android|iphone|ipad|ipod/i.test(navigator.userAgent) ? "mobile" : "desktop";
-        const fullUrl = `https://t.me/shilodevelopment/745?utm_source=qr_code&utm_medium=${device}&utm_campaign=promote_tg_channel`;
-        window.location.href = fullUrl;
-      })
-      .catch(() => {
-        alert("Ошибка при отправке. Попробуйте позже.");
-        loader.style.display = 'none';
-      });
-    });
-  </script>
+        // Обновляем ссылку для ручного перехода
+        const telegramLink = document.getElementById("telegram-link");
+        telegramLink.href = fullUrl;
+    </script>
 </body>
 </html>
